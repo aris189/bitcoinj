@@ -1,0 +1,21 @@
+import base64
+from bitcoinlib.mnemonic import Mnemonic
+
+def base64_to_mnemonic(base64_string):
+    # Decode string Base64 ke bytes
+    base64_bytes = base64_string.encode('utf-8')
+    bytes_data = base64.b64decode(base64_bytes)
+
+    # Menghasilkan frase mnemonik dari bytes data
+    mnemonic = Mnemonic.mnemonic_from_entropy(bytes_data, language='english')
+
+    return mnemonic
+
+# String Base64
+base64_string = "GukjkOZyn18E1Is6LJUQKNoVm0hZtrhL0AILiMfPp7s="
+
+# Menghasilkan frase mnemonik
+mnemonic = base64_to_mnemonic(base64_string)
+
+print("String Base64:", base64_string)
+print("Frase Mnemonik:", mnemonic)
